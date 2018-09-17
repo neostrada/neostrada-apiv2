@@ -10,13 +10,13 @@ namespace Neostrada\Client;
 
 use Neostrada\Client\lib\NeoClient;
 
-class Extensions
+class Country
 {
 
-    public function getExtensions()
+    public function getCountries()
     {
         $neostrada = new NeoClient();
-        $neostrada->setRoute('/extensions');
+        $neostrada->setRoute('/countries');
         $neostrada->setMethod('GET');
 
         $response = $neostrada->call();

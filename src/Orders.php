@@ -10,36 +10,34 @@ namespace Neostrada\Client;
 
 use Neostrada\Client\lib\NeoClient;
 
-class Whois
+class Orders
 {
-    protected $parameters;
+    protected $parameter;
 
-    public function __construct(array $parameters)
+    public function __construct($parameter = [])
     {
-        $this->parameters = $parameters;
+        $this->parameter = $parameter;
     }
 
-    public function whois()
+    public function getPlannedOrders()
     {
         $neostrada = new NeoClient();
-        $neostrada->setRoute('/whois');
-        $neostrada->setParameters($this->parameters);
-        $neostrada->setMethod('POST');
+        $neostrada->setRoute('/orders/planned/');
+        $neostrada->setMethod('GET');
 
         $response = $neostrada->call();
         return $response;
 
     }
 
-    public function bulkWhois()
+    public function placeOrder()
     {
         $neostrada = new NeoClient();
-        $neostrada->setRoute('/bulkwhois');
-        $neostrada->setParameters($this->parameters);
+        $neostrada->setRoute('/orders/add/');
+        $neostrada->setParameters($this->parameter);
         $neostrada->setMethod('POST');
 
         $response = $neostrada->call();
         return $response;
-
     }
 }

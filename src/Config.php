@@ -8,7 +8,6 @@
 
 namespace Neostrada\Client;
 
-use Neostrada\Client\lib\NeoClient;
 
 class Config
 {
