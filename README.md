@@ -11,8 +11,15 @@ curl -sS https://getcomposer.org/installer | php
 
 
 Next, run the Composer command to install the latest stable version of APIv2:
+
+_(Neostrada APIv2 is still under development. We recommend installing dev-master)_
 ```
-composer require neostrada/apiv2
+composer require neostrada/apiv2 dev-master
+```
+
+__For using the examples skip installing via composer and run__
+```
+git clone https://github.com/neostrada/neostrada-apiv2.git
 ```
 
 __Setting up__
