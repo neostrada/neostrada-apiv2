@@ -22,7 +22,7 @@ __Or clone the repository via__
 git clone https://github.com/neostrada/neostrada-apiv2.git
 ```
 
-__Setting up__
+__Define your token__
 
 Add your access token to the constant TOKEN in the Config.php file
 
