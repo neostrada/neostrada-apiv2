@@ -17,7 +17,7 @@ _(Neostrada APIv2 is still under development. We recommend installing dev-master
 composer require neostrada/apiv2 dev-master
 ```
 
-__For using the examples skip installing via composer and run__
+__Or clone the repository via__
 ```
 git clone https://github.com/neostrada/neostrada-apiv2.git
 ```
