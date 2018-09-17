@@ -1,0 +1,28 @@
+{
+  "name": "neostrada/apiv2",
+  "type": "symfony-bundle",
+  "description": "A Neostrada APIv2 example. Written in PHP",
+  "keywords": [
+    "neostrada",
+    "php",
+    "apiv2",
+    "package"
+  ],
+  "homepage": "https://github.com/Neostrada/apiv2",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Puya Sarmidani",
+      "email": "info@developerlab.nl"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "guzzlehttp/guzzle": "6.x"
+  },
+  "autoload": {
+    "psr-4": {
+      "Neostrada\\Client\\": "src/",
+    }
+  }
+}
