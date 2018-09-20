@@ -27,8 +27,11 @@ __Define your token__
 Add your access token to the constant TOKEN in the Config.php file
 
 ```
-# /example-neostrada-apiv2/src/Config.php
-const TOKEN = '';
+require_once __DIR__ . "/../../vendor/autoload.php";
+
+
+$neo = new \Neostrada\Client\NeoClient();
+$neo->setToken('TOKEN HERE');
 ```
 
 ## Support
