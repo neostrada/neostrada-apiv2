@@ -4,62 +4,76 @@
  * User: Puya Sarmidani
  * Date: 17-09-18
  * Time: 13:13
+ *
+ * How to get, add, edit and delete dns records with the Neostrada API. You need to call domains to receive an dns_id
  */
 
-require("../../vendor/autoload.php");
+try {
+    /*
+     * Initialize the Neostrada API library with your API key.
+     */
+    require "./initialize.php";
+
+    $dns_id = 1234;
+
+    /**
+     * Get all records of a domain
+     *
+     * @Return JSON array
+     */
+    $dns = $neo->getDns($dns_id);
 
 
-echo '<pre>';
-print_r(getDns(1234, ['type' => 'A'])); // type is optional
-//print_r(addDns(1234)); // adding multiple arrays possible
-//print_r(editDns(1234)); // editing multiple records possible
-//print_r(deleteDns(1234)); // editing multiple records possible
-exit;
-
-
-function getDns($dnsId, $type = [])
-{
-    $dns = new \Neostrada\Client\Dns([], $type);
-
-    return json_decode($dns->getDns($dnsId));
-}
-
-function addDns($dnsId)
-{
-    $param = [
+    /**
+     * Add new records. You can add multiple records with one call. Just create a multidimensional array
+     *
+     * @Return JSON array
+     */
+    $neo->setParameters([
         'name' => 'exampledomain.nl',
         'content' => '127.0.0.1',
         'type' => 'A',
         'prio' => 3600,
         'ttl' => 0
-    ];
+    ]);
 
-    $dns = new \Neostrada\Client\Dns($param);
+    $addDns = $neo->addDns($dns_id);
 
-    return json_decode($dns->addDns($dnsId));
-}
+    /**
+     * Edit dns records. for editing records, a records_id is required. You can get this id by calling the getDns function
+     *
+     * @Return JSON array
+     */
 
-function editDns($dnsId)
-{
-    $param = [
+    $neo->setParameters([
         'record_id' => 12345678,
         'content' => '127.0.0.1',
         'prio' => 3600,
         'ttl' => 0
-    ];
+    ]);
 
-    $dns = new \Neostrada\Client\Dns($param);
+    $editDns = $neo->editDns($dns_id);
 
-    return json_decode($dns->editDns($dnsId));
-}
+    /**
+     * Deleting a record. Just pass the records_id.
+     *
+     * @Return JSON array
+     */
 
-function deleteDns($dnsId)
-{
-    $param = [
+    $neo->setParameters([
         'record_id' => 12345678,
-    ];
+    ]);
 
-    $dns = new \Neostrada\Client\Dns($param);
+    $editDns = $neo->editDns($dns_id);
 
-    return json_decode($dns->deleteDns($dnsId));
+
+    /**
+     * Print the result to the screen. Use JSON decode
+     */
+    echo '<pre>';
+    print_r(json_decode($dns));
+    exit;
+
+} catch (Exception $e) {
+    echo "API call failed: " . htmlspecialchars($e->getMessage());
 }

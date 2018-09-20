@@ -4,60 +4,78 @@
  * User: Puya Sarmidani
  * Date: 17-09-18
  * Time: 13:13
+ *
+ * How to get, add, edit and delete nameservers of a domain with the Neostrada API.
  */
 
-require("../../vendor/autoload.php");
+try {
+    /*
+     * Initialize the Neostrada API library with your API key.
+     */
+    require "./initialize.php";
+
+    $dnsId = 1234;
+
+    /**
+     * Get all nameservers
+     *
+     * @Return JSON array
+     */
+    $nameservers = $neo->getNameservers($dnsId);
 
 
-echo '<pre>';
-print_r(getNameservers(1234));
-//print_r(addNameservers(1234)); // adding multiple nameservers possible
-//print_r(editNameservers(1234)); // editing multiple nameservers possible
-//print_r(deleteNameservers(1234)); // deleting multiple nameservers possible
-exit;
-
-
-function getNameservers($dnsId)
-{
-    $nameservers = new \Neostrada\Client\Nameservers();
-
-    return json_decode($nameservers->getNameservers($dnsId));
-}
-
-function addNameservers($dnsId)
-{
-    $param = [
+    /**
+     * Add a new nameserver.
+     * Multiple nameservers can be added at once
+     *
+     * @Return JSON array
+     */
+    $neo->setParameters([
         'content' => [
             'een.dnssrv.nl',
             'twee.dnssrv.nl',
             'drie.dnssrv.nl'
+            ]
+        ])
+    ;
+
+    $addNameservers = $neo->addNameservers($dnsId);
+
+    /**
+     * Edit a nameserver. Need to send a record_id of the record you want to edit.
+     * Multiple records can be edited at once.
+     *
+     * @Return JSON array
+     */
+    $neo->setParameters(
+        [
+            'record_id' => 12345678,
+            'content' => 'sandra.neostrada.nl',
         ]
-    ];
+    );
 
-    $nameservers = new \Neostrada\Client\Nameservers($param);
+    $editNameservers = $neo->editNameservers($dnsId);
 
-    return json_decode($nameservers->addNameservers($dnsId));
-}
+    /**
+     * Delete a nameserver.
+     * Multiple nameservers can be deleted at once.
+     *
+     * @Return JSON array
+     */
+    $neo->setParameters(
+        [
+            'record_id' => 12345678,
+        ]
+    );
+    $deleteNameservers = $neo->deleteNameservers($dnsId);
 
-function editNameservers($dnsId)
-{
-    $param = [
-        'record_id' => 12345678,
-        'content' => 'sandra.neostrada.nl',
-    ];
+    /**
+     * Print the result to the screen. Use JSON decode
+     */
+    echo '<pre>';
+    print_r(json_decode($nameservers));
+    exit;
 
-    $nameservers = new \Neostrada\Client\Nameservers($param);
-
-    return json_decode($nameservers->editNameservers($dnsId));
-}
-
-function deleteNameservers($dnsId)
-{
-    $param = [
-        'record_id' => 12345678,
-    ];
-
-    $nameservers = new \Neostrada\Client\Nameservers($param);
-
-    return json_decode($nameservers->deleteNameservers($dnsId));
+} catch (Exception $e) {
+    echo "API call failed: " . htmlspecialchars($e->getMessage());
 }

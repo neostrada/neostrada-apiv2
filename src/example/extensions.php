@@ -3,21 +3,31 @@
  * Created by Neostrada.
  * User: Puya Sarmidani
  * Date: 17-09-18
- * Time: 11:04
+ * Time: 13:13
+ *
+ * How to get all extensions with the Neostrada API.
  */
 
-require("../../vendor/autoload.php");
+try {
+    /*
+     * Initialize the Neostrada API library with your API key.
+     */
+    require "./initialize.php";
 
+    /**
+     * Get all extensions
+     *
+     * @Return JSON array
+     */
+    $extensions = $neo->getExtensions();
 
-echo '<pre>';
-print_r(exampleExtensions());
-exit;
+    /**
+     * Print the result to the screen. Use JSON decode
+     */
+    echo '<pre>';
+    print_r(json_decode($extensions));
+    exit;
 
-
-function exampleExtensions()
-{
-    $extensions = new \Neostrada\Client\Extensions();
-
-    return json_decode($extensions->getExtensions());
-
+} catch (Exception $e) {
+    echo "API call failed: " . htmlspecialchars($e->getMessage());
 }
