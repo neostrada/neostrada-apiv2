@@ -24,5 +24,5 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - composer.json and readme file
 
-[v1.0]: https://github.com/olivierlacan/keep-a-changelog/compare/dev-master...v1.0
+[v1.0]: https://github.com/neostrada/neostrada-apiv2/compare/dev-master...v1.0
 [dev-master]: https://github.com/neostrada/neostrada-apiv2/compare/master
