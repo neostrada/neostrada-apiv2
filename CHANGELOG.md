@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 ### Upcoming
 - Remove dev-master and start version tags
 
+## [v1.0] - 2018-09-21
+### Added
+- Version tag v1.0
+### Changed
+- Namespace issues after composer require
+
 ## [dev-master] - 2018-09-17
 ### Added
 - Whois/bulkwhois library and example.
@@ -18,4 +24,5 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - composer.json and readme file
 
+[v1.0]: https://github.com/olivierlacan/keep-a-changelog/compare/dev-master...v1.0
 [dev-master]: https://github.com/neostrada/neostrada-apiv2/compare/master
