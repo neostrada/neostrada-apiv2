@@ -242,7 +242,7 @@ class NeoClient
 
     public function deleteHolders()
     {
-        $this->setRoute('/holders/delete/');
+        $this->setRoute('/holders/delete');
         $this->setParameters($this->getParameters());
         $this->setMethod('DELETE');
 
@@ -292,7 +292,7 @@ class NeoClient
 
     public function getPlannedOrders()
     {
-        $this->setRoute('/orders/planned/');
+        $this->setRoute('/orders/planned');
         $this->setMethod('GET');
 
         $response = $this->call();
@@ -302,7 +302,7 @@ class NeoClient
 
     public function placeOrder()
     {
-        $this->setRoute('/orders/add/');
+        $this->setRoute('/orders/add');
         $this->setParameters($this->getParameters());
         $this->setMethod('POST');
 
